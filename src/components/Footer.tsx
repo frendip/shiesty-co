@@ -4,17 +4,21 @@ import {Modal} from '@/components/ui';
 import {useState} from 'react';
 import {Contacts, AboutUs} from '@/components';
 
-export default function Footer() {
+interface FooterProps {
+	className?: string;
+}
+
+export default function Footer({className = ''}: FooterProps) {
 	const [isContact, setIsContact] = useState(false);
 	const [isAboutUs, setIsAboutUs] = useState(false);
 	return (
-		<footer className="bg-black text-white p-4">
-			<div className="w-4/5 mx-auto flex justify-between">
+		<footer className={`p-2 md:p-4 bg-black text-white ${className}`}>
+			<div className="w-4/5 mx-auto flex justify-center md:justify-between text-lg md:text-base">
 				<div className="flex gap-10">
-					<button onClick={() => setIsContact(true)} className="text-white p-2 hover:text-gray-300 transition-colors">
+					<button onClick={() => setIsContact(true)} className="p-4 md:p-2 text-white hover:text-gray-300 transition-colors">
 						Контакты
 					</button>
-					<button onClick={() => setIsAboutUs(true)} className="text-white p-2 hover:text-gray-300 transition-colors">
+					<button onClick={() => setIsAboutUs(true)} className="p-4 md:p-2 text-white hover:text-gray-300 transition-colors">
 						О нас
 					</button>
 

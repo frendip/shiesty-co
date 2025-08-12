@@ -18,11 +18,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ru">
-			<body className="antialiased bg-gray-50">
+			<body className="antialiased bg-white">
 				<div className="h-screen flex flex-col">
-					<Header />
+					<Header className="shrink-0" />
 					<main className="flex-1">{children}</main>
-					<Footer />
+					<Footer className="shrink-0" />
 				</div>
 			</body>
 		</html>

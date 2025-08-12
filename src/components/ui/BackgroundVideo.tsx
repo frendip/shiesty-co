@@ -37,7 +37,7 @@ export default function BackgroundVideo({srcPath, source, restartDelay = 0}: Bac
 	return (
 		<video
 			ref={videoRef}
-			className="w-full h-full object-cover"
+			className="w-full h-full object-contain lg:object-cover"
 			playsInline
 			disablePictureInPicture
 			disableRemotePlayback
