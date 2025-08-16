@@ -43,6 +43,7 @@ export default function BackgroundVideo({srcPath, source, restartDelay = 0}: Bac
 			disableRemotePlayback
 			muted
 			autoPlay
+			preload="auto"
 		>
 			<source src={srcPath} type={`video/${source}`} />
 		</video>
