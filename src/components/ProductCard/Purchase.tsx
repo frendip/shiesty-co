@@ -20,7 +20,7 @@ function Purchase({setIsOpen}: PurchaseProps) {
 Адрес пункта выдачи CDEK: ${data.cdekAddress}
 Номер телефона: ${data.phoneNumber}`;
 
-		const telegramUrl = `https://t.me/sinful_yts?text=${encodeURIComponent(message)}`;
+		const telegramUrl = `https://t.me/shiestymanager?text=${encodeURIComponent(message)}`;
 		window.open(telegramUrl, '_blank');
 		setIsOpen(false);
 	};

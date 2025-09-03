@@ -4,10 +4,11 @@ import type {Metadata} from 'next';
 import {Header, Footer} from '@/components';
 
 export const metadata: Metadata = {
-	title: 'Clothes Shop - Интернет-магазин одежды',
-	description: 'Современный интернет-магазин стильной одежды. Качественные товары по доступным ценам.',
-	keywords: 'одежда, магазин, футболки, стиль, мода',
-	authors: [{name: 'Clothes Shop'}],
+	title: 'Shiesty Company',
+	description:
+		'Shiesty Company — бренд, цель которого объединять и вдохновлять молодых людей, стремящихся к развитию и успеху.',
+	keywords: 'стритвир, уличная одежда, футболки, бренд одежды',
+	authors: [{name: 'Shiesty Company'}],
 	viewport: 'width=device-width, initial-scale=1'
 };
 
