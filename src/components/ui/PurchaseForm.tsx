@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {useForm, Controller, FieldError, UseFormRegisterReturn} from 'react-hook-form';
-import {CommonButton, SelectorButton} from '@/components/ui';
+import {CommonButton, SelectorButton} from '@/components/ui/buttons';
 
 interface FormData {
 	size: 'M' | 'L';

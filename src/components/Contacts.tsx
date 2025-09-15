@@ -1,5 +1,5 @@
 import React from 'react';
-import {LinkButton} from '@/components/ui';
+import {LinkButton} from '@/components/ui/buttons';
 import TelegramIcon from '@/assets/telegram.svg';
 import InstagramIcon from '@/assets/instagram.svg';
 

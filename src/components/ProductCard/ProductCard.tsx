@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import {useState, useEffect} from 'react';
-import {CommonButton, Modal} from '@/components/ui';
+import {CommonButton} from '@/components/ui/buttons';
+import {Modal} from '@/components/ui';
 import classes from './ProductCard.module.css';
 import Purchase from './Purchase';
 
