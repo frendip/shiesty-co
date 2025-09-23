@@ -9,7 +9,12 @@ export default function Home() {
 			</div>
 
 			<div className="flex justify-center relative z-10">
-				<ProductCard name="«DON'T STOP» T-SHIRT" price="3000" />
+				<ProductCard
+					name="«DON'T STOP» T-SHIRT"
+					price="3000"
+					imageData={{urls: {back: '/hustlers-back-tshirt.png', front: '/hustlers-front-tshirt.png'}}}
+					modelData={{url: '/models/hustlers-tshirt.meshopt.glb'}}
+				/>
 			</div>
 		</div>
 	);
