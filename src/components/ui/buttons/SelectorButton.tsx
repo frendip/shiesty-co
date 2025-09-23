@@ -7,7 +7,7 @@ interface SelectorButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode;
 }
 
-const activeButtonStyle = 'border-black bg-black text-white';
+const activeButtonStyle = 'border-black bg-black text-white hover:bg-gray-800';
 const inactiveButtonStyle = 'border-gray-300 bg-white text-gray-700 hover:border-gray-400';
 
 const viewType = {

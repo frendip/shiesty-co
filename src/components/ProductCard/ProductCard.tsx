@@ -68,6 +68,10 @@ export default function ProductCard({name, price, imageData, modelData}: Product
 	const [isPurchaseOpen, setIsPurchaseOpen] = useState(false);
 	const [viewFormat, setViewFormat] = useState<'2d' | '3d'>('2d');
 
+	const onClickModelViewButton = () => {
+		setViewFormat((prevView) => (prevView === '2d' ? '3d' : '2d'));
+	};
+
 	useEffect(() => {
 		if (modelData?.url) {
 			useGLTF.preload(modelData.url);
@@ -82,12 +86,7 @@ export default function ProductCard({name, price, imageData, modelData}: Product
 
 				{modelData && (
 					<div className="flex self-end">
-						<SelectorButton onClick={() => setViewFormat('2d')} isActive={viewFormat === '2d'} view="left" size="small">
-							2D
-						</SelectorButton>
-						<SelectorButton onClick={() => setViewFormat('3d')} isActive={viewFormat === '3d'} view="right" size="small">
-							3D
-						</SelectorButton>
+						<SelectorButton onClick={onClickModelViewButton}>{viewFormat === '2d' ? '3D' : '2D'}</SelectorButton>
 					</div>
 				)}
 
