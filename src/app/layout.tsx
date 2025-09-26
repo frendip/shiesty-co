@@ -22,7 +22,7 @@ export default function RootLayout({
 			<body className="antialiased bg-white">
 				<div className="h-screen flex flex-col">
 					<Header className="shrink-0" />
-					<main className="flex-1 p-8">{children}</main>
+					<main className="flex-1">{children}</main>
 					<Footer className="shrink-0" />
 				</div>
 			</body>
