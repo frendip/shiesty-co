@@ -1,23 +1,29 @@
 import React from 'react';
 
 interface CommonButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-	size?: 'auto' | 'full';
-	view?: keyof typeof viewType;
+	size?: keyof typeof sizeVariants;
+	isStretched?: boolean;
+	view?: keyof typeof viewVariants;
 	children: React.ReactNode;
 }
 
-const viewType = {
-	primary: 'bg-black text-white hover:bg-gray-800',
-	secondary: 'bg-white text-gray-700 border-2 border-gray-300 hover:border-gray-400'
+const viewVariants = {
+	primary: 'bg-black border-black text-white hover:bg-gray-800 hover:border-gray-800',
+	secondary: 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
 } as const;
 
-function CommonButton({size = 'full', view = 'primary', children, ...buttonProps}: CommonButtonProps) {
-	const width = size === 'auto' ? 'w-fit' : 'w-full';
+const sizeVariants = {
+	small: 'py-3 px-3',
+	medium: 'py-4 px-6'
+} as const;
 
+function CommonButton({size = 'medium', view = 'primary', isStretched, children, ...buttonProps}: CommonButtonProps) {
 	return (
 		<button
 			{...buttonProps}
-			className={`${width} ${viewType[view]} py-4 px-6 rounded-lg font-semibold transition-colors duration-200`}
+			className={`${viewVariants[view]}
+			${sizeVariants[size]}
+			${isStretched ? 'w-full' : 'w-auto'} border-2 rounded-lg font-semibold transition-colors duration-200`}
 		>
 			{children}
 		</button>

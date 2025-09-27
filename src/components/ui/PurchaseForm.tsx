@@ -88,7 +88,7 @@ function PurchaseForm({onSubmit}: PurchaseFormProps) {
 			/>
 
 			<div className="pt-4">
-				<CommonButton>Связаться</CommonButton>
+				<CommonButton isStretched>Связаться</CommonButton>
 			</div>
 		</form>
 	);
