@@ -14,13 +14,13 @@ const sliderImages = [
 export default function Home() {
 	return (
 		<div className="h-full flex flex-col justify-center">
-			<Slider className="h-[65vh] lg:h-[70vh]" sliderImages={sliderImages} />
-			<div className="relative h-[90vh] md:h-[80vh] flex flex-col justify-center">
-				<div className="absolute top-0 bottom-0 left-0 right-0 z-0">
+			<Slider className="h-[70vh]" sliderImages={sliderImages} />
+			<div className="mt-3 mb-15 md:mt-30 md:mb-30 flex flex-col justify-center items-center gap-3 md:relative">
+				<div className="w-1/2 md:w-full md:absolute md:inset-0">
 					<BackgroundVideo srcPath="video/background.mp4" source="mp4" restartDelay={5000} />
 				</div>
 
-				<div className="flex justify-center relative z-10">
+				<div className="flex justify-center relative">
 					<ProductCard
 						name="«DON'T STOP» T-SHIRT"
 						price="3000"
