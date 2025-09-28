@@ -1,1 +1,21 @@
 @import 'tailwindcss';
+
+@font-face {
+	font-family: 'DrukXCondensedCyrSuper';
+	src: url('../assets/fonts/drukxcondensedcyrsuper/drukxcondensedcyrsuper.woff2') format('woff2'),
+		url('../assets/fonts/drukxcondensedcyrsuper/drukxcondensedcyrsuper.woff') format('woff'),
+		url('../assets/fonts/drukxcondensedcyrsuper/drukxcondensedcyrsuper.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@theme {
+	--font-druk: 'DrukXCondensedCyrSuper', Arial, sans-serif;
+}
+
+.font-druk-wide {
+	font-family: 'DrukXCondensedCyrSuper', Arial, sans-serif;
+	letter-spacing: 0.025em;
+	word-spacing: 0.05em;
+}

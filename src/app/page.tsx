@@ -13,8 +13,13 @@ const sliderImages = [
 
 export default function Home() {
 	return (
-		<div className="h-full flex flex-col justify-center">
+		<div className="h-full">
+			<div className="font-druk-wide text-center text-4xl md:text-7xl my-3 md:my-4">
+				“INSPIRED BY THE FEAR TO BEING AVERAGE”
+			</div>
+
 			<Slider className="h-[70vh]" sliderImages={sliderImages} />
+
 			<div className="mt-3 mb-15 md:mt-30 md:mb-30 flex flex-col justify-center items-center gap-3 md:relative">
 				<div className="w-1/2 md:w-full md:absolute md:inset-0">
 					<BackgroundVideo srcPath="video/background.mp4" source="mp4" restartDelay={5000} />
