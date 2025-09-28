@@ -16,8 +16,6 @@ export default function DynamicSlider({sliderImages}: SliderProps) {
 	return (
 		<Swiper
 			modules={[Pagination, Autoplay]}
-			spaceBetween={20}
-			slidesPerView={1}
 			centeredSlides
 			pagination={{
 				clickable: true,
@@ -29,6 +27,11 @@ export default function DynamicSlider({sliderImages}: SliderProps) {
 			}}
 			loop={true}
 			breakpoints={{
+				0: {
+					centeredSlides: false,
+					slidesPerView: 1,
+					spaceBetween: 20
+				},
 				640: {
 					slidesPerView: 2,
 					spaceBetween: 10

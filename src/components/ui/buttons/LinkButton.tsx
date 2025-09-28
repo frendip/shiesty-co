@@ -13,7 +13,7 @@ function LinkButton({href, label, className = '', Icon}: LinkButtonProps) {
 			href={href}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={`flex items-center gap-1 p-2 text-black hover:text-gray-600 transition-colors duration-200 ${className}`}
+			className={`flex items-center gap-1 p-2 hover:text-gray-300 transition-colors duration-200 ${className}`}
 		>
 			<Icon className="w-5 h-5 fill-current" />
 			<span className="font-medium">{label}</span>
