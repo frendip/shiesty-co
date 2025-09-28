@@ -29,7 +29,7 @@ export default function Home() {
 					<ProductCard
 						name="«DON'T STOP» T-SHIRT"
 						price="3000"
-						imageData={{urls: {back: '/hustlers-back-tshirt.png', front: '/hustlers-front-tshirt.png'}}}
+						imageData={{urls: {back: '/tshirts/dont-stop/back.png', front: '/tshirts/dont-stop/front.png'}}}
 						modelData={{url: '/models/hustlers-tshirt.meshopt.glb'}}
 					/>
 				</div>

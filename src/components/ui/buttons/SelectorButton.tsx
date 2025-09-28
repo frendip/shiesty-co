@@ -2,7 +2,6 @@ import React from 'react';
 
 interface SelectorButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 	type?: keyof typeof typeVariants;
-	size?: keyof typeof sizeVariants;
 	isActive?: boolean;
 	children: React.ReactNode;
 }
@@ -17,17 +16,12 @@ const typeVariants = {
 	center: 'border-l-0  border-r-0'
 } as const;
 
-const sizeVariants = {
-	small: 'px-2 py-1',
-	medium: 'px-4 py-2'
-} as const;
-
-function SelectorButton({type = 'single', size = 'medium', isActive, children, ...buttonProps}: SelectorButtonProps) {
+function SelectorButton({type = 'single', className, isActive, children, ...buttonProps}: SelectorButtonProps) {
 	return (
 		<button
 			{...buttonProps}
 			type="button"
-			className={`${sizeVariants[size]} border-2 ${typeVariants[type]} font-medium transition-colors duration-150 ${
+			className={`${className || ''} ${typeVariants[type]} border-2 font-medium transition-colors duration-150 ${
 				isActive ? activeButtonStyle : inactiveButtonStyle
 			}`}
 		>

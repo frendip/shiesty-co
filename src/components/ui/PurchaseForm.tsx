@@ -37,10 +37,10 @@ function PurchaseForm({onSubmit}: PurchaseFormProps) {
 					control={control}
 					render={({field}) => (
 						<div className="flex gap-3">
-							<SelectorButton isActive={field.value === 'M'} onClick={() => field.onChange('M')}>
+							<SelectorButton className="px-4 py-2" isActive={field.value === 'M'} onClick={() => field.onChange('M')}>
 								M
 							</SelectorButton>
-							<SelectorButton isActive={field.value === 'L'} onClick={() => field.onChange('L')}>
+							<SelectorButton className="px-4 py-2" isActive={field.value === 'L'} onClick={() => field.onChange('L')}>
 								L
 							</SelectorButton>
 						</div>
@@ -88,7 +88,9 @@ function PurchaseForm({onSubmit}: PurchaseFormProps) {
 			/>
 
 			<div className="pt-4">
-				<CommonButton isStretched>Связаться</CommonButton>
+				<CommonButton className="p-4" isStretched>
+					Связаться
+				</CommonButton>
 			</div>
 		</form>
 	);

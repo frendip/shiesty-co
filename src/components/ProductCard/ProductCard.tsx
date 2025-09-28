@@ -96,10 +96,9 @@ export default function ProductCard({name, price, imageData, modelData}: Product
 					{modelData && (
 						<div className="absolute -right-1.5	md:right-0 -top-8">
 							<CommonButton
-								onClick={onClickModelViewButton}
-								sizeX={3}
-								sizeY={3}
+								className="p-3"
 								view={viewFormat === '2d' ? 'secondary' : 'primary'}
+								onClick={onClickModelViewButton}
 							>
 								<span className="font-bold">{viewFormat === '2d' ? '3D' : '2D'}</span>
 							</CommonButton>
@@ -111,10 +110,14 @@ export default function ProductCard({name, price, imageData, modelData}: Product
 					<p className="text-center text-2xl font-bold text-gray-900">{price} ₽</p>
 
 					<div className="grid grid-cols-2 gap-3 sm:gap-5">
-						<CommonButton onClick={() => setIsPurchaseOpen(true)} sizeX={isMobile ? 3 : 6} view="secondary">
+						<CommonButton
+							className={`py-4 ${isMobile ? 'px-3' : 'px-6'}`}
+							view="secondary"
+							onClick={() => setIsPurchaseOpen(true)}
+						>
 							Подробнее
 						</CommonButton>
-						<CommonButton onClick={() => setIsPurchaseOpen(true)} sizeX={isMobile ? 3 : 6}>
+						<CommonButton className={`py-4 ${isMobile ? 'px-3' : 'px-6'}`} onClick={() => setIsPurchaseOpen(true)}>
 							Приобрести
 						</CommonButton>
 					</div>
