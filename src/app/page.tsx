@@ -15,7 +15,7 @@ export default function Home() {
 	return (
 		<div className="h-full">
 			<div className="font-druk-wide text-center text-4xl md:text-7xl my-3 md:my-4">
-				“INSPIRED BY THE FEAR TO BEING AVERAGE”
+				“INSPIRED BY THE FEAR OF BEING AVERAGE”
 			</div>
 
 			<Slider className="h-[70vh]" sliderImages={sliderImages} />

@@ -53,15 +53,27 @@ function ProductImage({imageData, name}: {imageData: ImageData; name: string}) {
 	};
 
 	return (
-		<Image
-			src={isHovered ? imageData.urls.front : imageData.urls.back}
-			width={350}
-			height={272.5}
-			alt={name}
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
-			onClick={handleClick}
-		/>
+		<div className="relative">
+			<Image
+				src={imageData.urls.back}
+				width={350}
+				height={272.5}
+				alt={`${name} back`}
+				className={`${isHovered ? 'opacity-0' : 'opacity-100'}`}
+				priority
+			/>
+			<Image
+				src={imageData.urls.front}
+				width={350}
+				height={272.5}
+				alt={`${name} front`}
+				className={`absolute inset-0 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
+				onClick={handleClick}
+				priority
+			/>
+		</div>
 	);
 }
 
