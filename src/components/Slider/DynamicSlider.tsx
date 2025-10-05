@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import {Swiper, SwiperSlide} from 'swiper/react';
-import {Pagination, Autoplay} from 'swiper/modules';
+import {Pagination, Autoplay, Mousewheel, Keyboard} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -15,7 +15,7 @@ import {SliderProps} from './Slider';
 export default function DynamicSlider({sliderImages}: SliderProps) {
 	return (
 		<Swiper
-			modules={[Pagination, Autoplay]}
+			modules={[Pagination, Autoplay, Mousewheel, Keyboard]}
 			centeredSlides
 			pagination={{
 				clickable: true,
@@ -26,6 +26,13 @@ export default function DynamicSlider({sliderImages}: SliderProps) {
 				disableOnInteraction: false
 			}}
 			loop={true}
+			mousewheel={{
+				forceToAxis: true
+			}}
+			keyboard={{
+				enabled: true,
+				onlyInViewport: true
+			}}
 			breakpoints={{
 				0: {
 					centeredSlides: false,
