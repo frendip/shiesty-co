@@ -1,0 +1,18 @@
+[
+	{
+		"id": "dont-stop",
+		"category": "shirts",
+		"name": "«DON'T STOP» T-SHIRT",
+		"sizes": ["M", "L"],
+		"price": 3000,
+		"imageData": {
+			"urls": {
+				"back": "/products/shirts/dont-stop/images/back.png",
+				"front": "/products/shirts/dont-stop/images/front.png"
+			}
+		},
+		"modelData": {
+			"url": "/products/shirts/dont-stop/models/hustlers-tshirt.meshopt.glb"
+		}
+	}
+]

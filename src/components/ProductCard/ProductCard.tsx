@@ -10,23 +10,18 @@ import {Modal} from '@/components/ui';
 import LoaderIcon from '@/assets/loader.svg';
 import Purchase from './Purchase';
 import classes from './ProductCard.module.css';
+import type {Product} from '@/types/product';
 
 const TShirtModel = dynamic(() => import('@/components/TShirtModel'), {
 	ssr: false,
 	loading: () => <LoaderIcon width="116" height="116" />
 });
 
-type ImageData = {urls: {back: string; front: string}};
-type ModelData = {url: string};
-
 interface ProductCardProps {
-	name: string;
-	price: string;
-	imageData: ImageData;
-	modelData?: ModelData;
+	product: Product;
 }
 
-function ProductImage({imageData, name}: {imageData: ImageData; name: string}) {
+function ProductImage({imageData, name}: {imageData: Product['imageData']; name: string}) {
 	const [isHovered, setIsHovered] = useState(false);
 	const [isTouchDevice, setIsTouchDevice] = useState(false);
 
@@ -77,7 +72,7 @@ function ProductImage({imageData, name}: {imageData: ImageData; name: string}) {
 	);
 }
 
-export default function ProductCard({name, price, imageData, modelData}: ProductCardProps) {
+export default function ProductCard({product}: ProductCardProps) {
 	const [isPurchaseOpen, setIsPurchaseOpen] = useState(false);
 	const [viewFormat, setViewFormat] = useState<'2d' | '3d'>('2d');
 
@@ -88,24 +83,24 @@ export default function ProductCard({name, price, imageData, modelData}: Product
 	};
 
 	useEffect(() => {
-		if (modelData?.url) {
-			useGLTF.preload(modelData.url);
+		if (product.modelData?.url) {
+			useGLTF.preload(product.modelData.url);
 			useEnvironment.preload({preset: 'warehouse'});
 		}
-	}, [modelData?.url]);
+	}, [product.modelData?.url]);
 
 	return (
 		<>
 			<div
 				className={`h-[430px] sm:h-[460px] md:h-[510px] rounded-lg p-6 flex flex-col items-center justify-between ${classes['glassEffect']}`}
 			>
-				<h2 className="text-xl text-center font-bold text-black mb-10">{name}</h2>
+				<h2 className="text-xl text-center font-bold text-black mb-10">{product.name}</h2>
 
 				<div className="w-[260px] sm:w-[300px] md:w-[350px] h-full flex justify-center items-center relative">
-					{viewFormat === '2d' && <ProductImage imageData={imageData} name={name} />}
-					{viewFormat === '3d' && modelData && <TShirtModel className="w-full h-full" src={modelData.url} />}
+					{viewFormat === '2d' && <ProductImage imageData={product.imageData} name={product.name} />}
+					{viewFormat === '3d' && product.modelData && <TShirtModel className="w-full h-full" src={product.modelData.url} />}
 
-					{modelData && (
+					{product.modelData && (
 						<div className="absolute -right-1.5	md:right-0 -top-8">
 							<CommonButton
 								className="p-3"
@@ -119,7 +114,7 @@ export default function ProductCard({name, price, imageData, modelData}: Product
 				</div>
 
 				<div className="flex flex-col gap-2 items-center">
-					<p className="text-center text-2xl font-bold text-gray-900">{price} ₽</p>
+					<p className="text-center text-2xl font-bold text-gray-900">{product.price} ₽</p>
 
 					<div className="grid grid-cols-2 gap-3 sm:gap-5">
 						<CommonButton
@@ -137,7 +132,7 @@ export default function ProductCard({name, price, imageData, modelData}: Product
 			</div>
 
 			<Modal isOpen={isPurchaseOpen} title="Оформление заказа" onClose={() => setIsPurchaseOpen(false)}>
-				<Purchase setIsOpen={setIsPurchaseOpen} />
+				<Purchase product={product} setIsOpen={setIsPurchaseOpen} />
 			</Modal>
 		</>
 	);

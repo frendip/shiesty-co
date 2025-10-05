@@ -1,20 +1,20 @@
 import {PurchaseForm} from '@/components/ui';
 import type {Dispatch, SetStateAction} from 'react';
+import type {Product} from '@/types/product';
+import type {FormData} from '@/components/ui/PurchaseForm';
 
-interface FormData {
-	size: 'M' | 'L';
-	fullName: string;
-	cdekAddress: string;
-	phoneNumber: string;
-}
+const INTERPRETER = {
+	shirts: 'футболку'
+} as const;
 
 interface PurchaseProps {
+	product: Product;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-function Purchase({setIsOpen}: PurchaseProps) {
+function Purchase({product, setIsOpen}: PurchaseProps) {
 	const onSubmit = (data: FormData) => {
-		const message = `Привет! Я выбрал футболку размера ${data.size}
+		const message = `Привет! Я выбрал ${INTERPRETER[product.category] || 'изделие'} размера ${data.size}
 
 ФИО: ${data.fullName}
 Адрес пункта выдачи CDEK: ${data.cdekAddress}
@@ -33,7 +33,7 @@ function Purchase({setIsOpen}: PurchaseProps) {
 				</p>
 			</div>
 
-			<PurchaseForm onSubmit={onSubmit} />
+			<PurchaseForm sizes={product.sizes} onSubmit={onSubmit} />
 		</div>
 	);
 }

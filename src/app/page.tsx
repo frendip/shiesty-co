@@ -1,6 +1,6 @@
-'use client';
 import {ProductCard, Slider} from '@/components';
 import {BackgroundVideo} from '@/components/ui';
+import {getProducts} from '@/lib/api';
 
 const sliderImages = [
 	{src: '/slider/1.JPG', alt: 'Фото 1'},
@@ -11,7 +11,9 @@ const sliderImages = [
 	{src: '/slider/6.JPG', alt: 'Фото 6'}
 ];
 
-export default function Home() {
+export default async function Home() {
+	const products = await getProducts();
+
 	return (
 		<div className="h-full">
 			<div className="font-druk-wide text-center text-4xl md:text-7xl my-3 md:my-4">
@@ -25,13 +27,10 @@ export default function Home() {
 					<BackgroundVideo srcPath="video/background.mp4" source="mp4" restartDelay={5000} />
 				</div>
 
-				<div className="flex justify-center relative">
-					<ProductCard
-						name="«DON'T STOP» T-SHIRT"
-						price="3000"
-						imageData={{urls: {back: '/products/shirts/dont-stop/back.png', front: '/products/shirts/dont-stop/front.png'}}}
-						modelData={{url: '/models/hustlers-tshirt.meshopt.glb'}}
-					/>
+				<div className="flex justify-center flex-wrap gap-12">
+					{products.items.map((product) => (
+						<ProductCard key={product.id} product={product} />
+					))}
 				</div>
 			</div>
 		</div>

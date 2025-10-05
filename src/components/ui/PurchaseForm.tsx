@@ -3,9 +3,10 @@
 import React from 'react';
 import {useForm, Controller, FieldError, UseFormRegisterReturn} from 'react-hook-form';
 import {CommonButton, SelectorButton} from '@/components/ui/buttons';
+import type {Product} from '@/types/product';
 
-interface FormData {
-	size: 'M' | 'L';
+export interface FormData {
+	size: string;
 	fullName: string;
 	cdekAddress: string;
 	phoneNumber: string;
@@ -13,9 +14,10 @@ interface FormData {
 
 interface PurchaseFormProps {
 	onSubmit: (data: FormData) => void;
+	sizes: Product['sizes'];
 }
 
-function PurchaseForm({onSubmit}: PurchaseFormProps) {
+function PurchaseForm({sizes, onSubmit}: PurchaseFormProps) {
 	const {
 		control,
 		register,
@@ -23,7 +25,7 @@ function PurchaseForm({onSubmit}: PurchaseFormProps) {
 		formState: {errors}
 	} = useForm<FormData>({
 		defaultValues: {
-			size: 'M'
+			size: sizes[0]
 		},
 		mode: 'onSubmit'
 	});
@@ -37,12 +39,16 @@ function PurchaseForm({onSubmit}: PurchaseFormProps) {
 					control={control}
 					render={({field}) => (
 						<div className="flex gap-3">
-							<SelectorButton className="px-4 py-2" isActive={field.value === 'M'} onClick={() => field.onChange('M')}>
-								M
-							</SelectorButton>
-							<SelectorButton className="px-4 py-2" isActive={field.value === 'L'} onClick={() => field.onChange('L')}>
-								L
-							</SelectorButton>
+							{sizes.map((size) => (
+								<SelectorButton
+									key={size}
+									className="px-4 py-2"
+									isActive={field.value === size}
+									onClick={() => field.onChange(size)}
+								>
+									{size}
+								</SelectorButton>
+							))}
 						</div>
 					)}
 				/>
