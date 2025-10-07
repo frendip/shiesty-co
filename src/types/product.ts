@@ -18,6 +18,10 @@ export interface Product {
 	name: string;
 	sizes: string[];
 	price: number;
+	material?: string,
+	color?: string,
+	fit?: string,
+	careInstructions?: string,
 	imageData: ImageData;
 	modelData?: ModelData;
 }

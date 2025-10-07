@@ -5,6 +5,10 @@
 		"name": "«DON'T STOP» T-SHIRT",
 		"sizes": ["M", "L"],
 		"price": 3000,
+		"material": "95% хлопок, 5% лайкра",
+		"color": "черный",
+		"fit": "оверсайз с широкими плечами",
+		"careInstructions": "смешанная стирка ~30°",
 		"imageData": {
 			"urls": {
 				"back": "/products/shirts/dont-stop/images/back.png",

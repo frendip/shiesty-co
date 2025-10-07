@@ -9,7 +9,7 @@ import {useMedia} from 'react-use';
 import {CommonButton} from '@/components/ui/buttons';
 import {Modal} from '@/components/ui';
 import LoaderIcon from '@/assets/loader.svg';
-import Purchase from './Purchase';
+import {Purchase} from '@/components';
 import classes from './ProductCard.module.css';
 import type {Product} from '@/types/product';
 
