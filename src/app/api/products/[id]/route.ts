@@ -1,10 +1,10 @@
 import {NextRequest, NextResponse} from 'next/server';
 import productsData from '@/data/products.json';
 
-type Ctx = {params: {id: string}};
+type Ctx = {params: Promise<{id: string}>};
 
-export const GET = (req: NextRequest, {params}: Ctx) => {
-	const {id} = params;
+export const GET = async (req: NextRequest, {params}: Ctx) => {
+	const {id} = await params;
 	const product = productsData.find((product) => product.id === id);
 
 	if (!product) {
