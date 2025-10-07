@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 
 import classes from './Slider.module.css';
 
-import {SliderProps} from './Slider';
+import type {SliderProps} from './Slider';
 
 export default function DynamicSlider({sliderImages}: SliderProps) {
 	return (
@@ -48,7 +48,7 @@ export default function DynamicSlider({sliderImages}: SliderProps) {
 					spaceBetween: 30
 				}
 			}}
-			className={`${classes.verticalPhotosSlider} relative w-full h-full`}
+			className={`${classes.slider} w-full h-full relative`}
 		>
 			{sliderImages.map((image, index) => (
 				<SwiperSlide key={index}>

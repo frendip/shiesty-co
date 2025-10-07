@@ -2,6 +2,7 @@ export interface ImageData {
 	urls: {
 		back: string;
 		front: string;
+		sizeGrid: string;
 	};
 }
 

@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Link from 'next/link';
 import {useGLTF, useEnvironment} from '@react-three/drei';
 import {useState, useEffect} from 'react';
 import {useMedia} from 'react-use';
@@ -117,13 +118,11 @@ export default function ProductCard({product}: ProductCardProps) {
 					<p className="text-center text-2xl font-bold text-gray-900">{product.price} ₽</p>
 
 					<div className="grid grid-cols-2 gap-3 sm:gap-5">
-						<CommonButton
-							className={`py-4 ${isMobile ? 'px-3' : 'px-6'}`}
-							view="secondary"
-							onClick={() => setIsPurchaseOpen(true)}
-						>
-							Подробнее
-						</CommonButton>
+						<Link href={`/${product.category}/${product.id}`}>
+							<CommonButton className={`py-4 ${isMobile ? 'px-3' : 'px-6'}`} isStretched view="secondary">
+								Подробнее
+							</CommonButton>
+						</Link>
 						<CommonButton className={`py-4 ${isMobile ? 'px-3' : 'px-6'}`} onClick={() => setIsPurchaseOpen(true)}>
 							Приобрести
 						</CommonButton>

@@ -34,8 +34,7 @@ export async function getProducts(filters?: ProductsFilter): Promise<ProductsRes
 }
 
 interface ProductResponse {
-	product: Product;
-	total: number;
+	item: Product;
 }
 
 export async function getProductById(id: string): Promise<ProductResponse> {
