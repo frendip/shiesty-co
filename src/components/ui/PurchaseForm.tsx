@@ -15,9 +15,10 @@ export interface FormData {
 interface PurchaseFormProps {
 	onSubmit: (data: FormData) => void;
 	sizes: Product['sizes'];
+	activeSize?: string;
 }
 
-function PurchaseForm({sizes, onSubmit}: PurchaseFormProps) {
+function PurchaseForm({sizes, activeSize, onSubmit}: PurchaseFormProps) {
 	const {
 		control,
 		register,
@@ -25,34 +26,36 @@ function PurchaseForm({sizes, onSubmit}: PurchaseFormProps) {
 		formState: {errors}
 	} = useForm<FormData>({
 		defaultValues: {
-			size: sizes[0]
+			size: activeSize ? activeSize : sizes[0]
 		},
 		mode: 'onSubmit'
 	});
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-			<div>
-				<label className="block text-sm font-medium text-gray-700 mb-3">Размер:</label>
-				<Controller
-					name="size"
-					control={control}
-					render={({field}) => (
-						<div className="flex gap-3">
-							{sizes.map((size) => (
-								<SelectorButton
-									key={size}
-									className="px-4 py-2"
-									isActive={field.value === size}
-									onClick={() => field.onChange(size)}
-								>
-									{size}
-								</SelectorButton>
-							))}
-						</div>
-					)}
-				/>
-			</div>
+			{!activeSize && (
+				<div>
+					<label className="block text-sm font-medium text-gray-700 mb-3">Размер:</label>
+					<Controller
+						name="size"
+						control={control}
+						render={({field}) => (
+							<div className="flex gap-3">
+								{sizes.map((size) => (
+									<SelectorButton
+										key={size}
+										className="px-4 py-2"
+										isActive={field.value === size}
+										onClick={() => field.onChange(size)}
+									>
+										{size}
+									</SelectorButton>
+								))}
+							</div>
+						)}
+					/>
+				</div>
+			)}
 
 			<PurchaseFormInput
 				label="ФИО"

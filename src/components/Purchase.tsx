@@ -9,10 +9,11 @@ const INTERPRETER = {
 
 interface PurchaseProps {
 	product: Product;
+	activeSize?: string;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-function Purchase({product, setIsOpen}: PurchaseProps) {
+function Purchase({product, activeSize, setIsOpen}: PurchaseProps) {
 	const onSubmit = (data: FormData) => {
 		const message = `Привет! Я выбрал ${INTERPRETER[product.category] || 'изделие'} размера ${data.size}
 
@@ -25,15 +26,18 @@ function Purchase({product, setIsOpen}: PurchaseProps) {
 		setIsOpen(false);
 	};
 
+	const title = `${
+		activeSize ? 'З' : 'Выберите нужный размер, з'
+	}аполните необходимую информацию и свяжитесь с нами в Telegram для
+					оформления заказа.`;
+
 	return (
 		<div>
 			<div className="pb-4">
-				<p className="text-gray-600 leading-relaxed">
-					Выберите нужный размер, заполните необходимую информацию и свяжитесь с нами в Telegram для оформления заказа.
-				</p>
+				<p className="text-gray-600 leading-relaxed">{title}</p>
 			</div>
 
-			<PurchaseForm sizes={product.sizes} onSubmit={onSubmit} />
+			<PurchaseForm sizes={product.sizes} activeSize={activeSize} onSubmit={onSubmit} />
 		</div>
 	);
 }

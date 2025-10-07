@@ -24,7 +24,7 @@ export default async function Shirt({params}: ShirtProps) {
 					<div className="font-bold text-2xl md:text-3xl">{product.name}</div>
 					<div className="text-2xl font-semibold">{product.price} ₽</div>
 					<PurchaseSection product={product} />
-					<div className="flex flex-col gap-0.5 items-center md:items-start">
+					<div className="flex flex-col gap-0.5 items-center md:items-start mt-6 md:mt-0">
 						{[
 							{key: 'material', label: 'Материал', value: product?.material},
 							{key: 'color', label: 'Цвет', value: product?.color},
