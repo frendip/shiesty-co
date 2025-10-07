@@ -16,8 +16,8 @@ export default async function Shirt({params}: ShirtProps) {
 
 	return (
 		<div className="w-4/5 mx-auto my-12">
-			<div className="grid grid-cols-2 gap-7">
-				<ProductSlider className="h-[60vh]" sliderImages={sliderImages} />
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+				<ProductSlider className="h-[50vh] lg:h-[60vh]" sliderImages={sliderImages} />
 				<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit explicabo odit, sunt excepturi incidunt minus iusto vitae reiciendis exercitationem expedita voluptatem, illo debitis quidem voluptatibus totam, dicta est quos! Maiores!
 				Sit commodi cumque corporis omnis? Eius officia dolore recusandae modi, laudantium hic? Ipsam, ab? Enim, nesciunt et ipsum expedita nam nulla consequatur minima, sunt, illo architecto molestias cupiditate hic? Cum!
 				Velit, iusto odit facere vero sint nisi veritatis optio ut tempore eligendi quaerat aliquam aliquid? Fugit in aliquid iste exercitationem architecto assumenda veritatis alias deleniti impedit illum dolore, maiores esse.

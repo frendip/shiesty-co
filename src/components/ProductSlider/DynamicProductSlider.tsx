@@ -66,7 +66,7 @@ export default function DynamicProductSlider({sliderImages}: SliderProps) {
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
 	return (
-		<div className={`w-full h-full flex flex-col gap-6`}>
+		<div className={`w-full h-full flex flex-col gap-3 lg:gap-6`}>
 			<Swiper
 				modules={[Thumbs, Keyboard]}
 				thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
@@ -91,7 +91,7 @@ export default function DynamicProductSlider({sliderImages}: SliderProps) {
 				spaceBetween={5}
 				slidesPerView={sliderImages.length}
 				watchSlidesProgress={true}
-				className={`${classes.slider} mx-auto w-3/5 h-1/6`}
+				className={`${classes.slider} mx-auto w-4/5 lg:w-3/5 h-2/6 sm:h-1/6`}
 			>
 				{sliderImages.map((image, index) => (
 					<SwiperSlide
