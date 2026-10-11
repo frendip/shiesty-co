@@ -1,4 +1,4 @@
-import {BACKEND_URL} from './constants';
+import productsData from '@/data/products.json';
 import type {Product} from '@/types/product';
 
 interface ProductsFilter {
@@ -13,38 +13,32 @@ interface ProductsResponse {
 	total: number;
 }
 
-export async function getProducts(filters?: ProductsFilter): Promise<ProductsResponse> {
-	const url = new URL('/api/products', BACKEND_URL);
+export async function getProducts(filters: ProductsFilter = {}): Promise<ProductsResponse> {
+	let products = [...productsData] as Product[];
 
-	if (filters) {
-		Object.entries(filters).forEach(([filter, value]) => {
-			if (value !== undefined && value !== null) {
-				url.searchParams.append(filter, String(value));
-			}
-		});
+	if (filters.category) {
+		products = products.filter((product) => product.category === filters.category);
+	}
+	if (filters.maxPrice !== undefined) {
+		products = products.filter((product) => product.price <= filters.maxPrice!);
+	}
+	if (filters.minPrice !== undefined) {
+		products = products.filter((product) => product.price >= filters.minPrice!);
+	}
+	if (filters.sort === 'asc') {
+		products.sort((a, b) => a.price - b.price);
+	} else if (filters.sort === 'desc') {
+		products.sort((a, b) => b.price - a.price);
 	}
 
-	const res = await fetch(url, {next: {revalidate: 21600}});
-
-	if (!res.ok) {
-		throw Error(`Failed to fetch products: ${res.statusText}`);
-	}
-
-	return res.json();
+	return {items: products, total: products.length};
 }
 
 interface ProductResponse {
 	item: Product;
 }
 
-export async function getProductById(id: string): Promise<ProductResponse> {
-	const url = new URL(`/api/products/${id}`, BACKEND_URL);
-
-	const res = await fetch(url, {next: {revalidate: 21600}});
-
-	if (!res.ok) {
-		throw Error(`Failed to fetch product: ${res.statusText}`);
-	}
-
-	return res.json();
+export async function getProductById(id: string): Promise<ProductResponse | undefined> {
+	const product = (productsData as Product[]).find((product) => product.id === id);
+	return product ? {item: product} : undefined;
 }

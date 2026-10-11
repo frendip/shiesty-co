@@ -1,39 +1,18 @@
 import {NextResponse, NextRequest} from 'next/server';
-import productsData from '@/data/products.json';
+import {getProducts} from '@/lib/api';
 
-import type {Product} from '@/types/product';
-
-export const GET = (req: NextRequest) => {
+export const GET = async (req: NextRequest) => {
 	const {searchParams} = new URL(req.url);
-
-	let products = [...productsData] as Product[];
-
-	const category = searchParams.get('category');
 	const minPrice = searchParams.get('minPrice');
 	const maxPrice = searchParams.get('maxPrice');
 	const sort = searchParams.get('sort');
 
-	if (category) {
-		products = products.filter((c) => c.category === category);
-	}
-	if (maxPrice) {
-		products = products.filter((c) => c.price <= Number(maxPrice));
-	}
-	if (minPrice) {
-		products = products.filter((c) => c.price >= Number(minPrice));
-	}
+	const products = await getProducts({
+		category: searchParams.get('category') || undefined,
+		minPrice: minPrice ? Number(minPrice) : undefined,
+		maxPrice: maxPrice ? Number(maxPrice) : undefined,
+		sort: sort === 'asc' || sort === 'desc' ? sort : undefined
+	});
 
-	if (sort === 'asc') {
-		products.sort((a, b) => a.price - b.price);
-	} else if (sort === 'desc') {
-		products.sort((a, b) => b.price - a.price);
-	}
-
-	return NextResponse.json(
-		{
-			items: products,
-			total: products.length
-		},
-		{status: 200}
-	);
+	return NextResponse.json(products, {status: 200});
 };

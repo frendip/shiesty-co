@@ -1,4 +1,5 @@
 import React from 'react';
+import {notFound} from 'next/navigation';
 import {getProductById} from '@/lib/api/index';
 import {ProductSlider} from '@/components';
 import PurchaseSection from './PurchaseSection';
@@ -9,7 +10,13 @@ interface ShirtProps {
 
 export default async function Shirt({params}: ShirtProps) {
 	const {id} = await params;
-	const {item: product} = await getProductById(id);
+	const response = await getProductById(id);
+
+	if (!response) {
+		notFound();
+	}
+
+	const {item: product} = response;
 
 	const sliderImages = Object.values(product.imageData.urls).map((url, index) => ({
 		src: url,
