@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shiesty Company
 
-## Getting Started
+Сайт бренда одежды Shiesty Company с каталогом, страницами товаров, фотографиями и интерактивным 3D-просмотром футболки. Покупатель выбирает размер и заполняет форму, после чего открывается Telegram с подготовленным сообщением менеджеру. Оплата и завершение заказа происходят вне сайта.
 
-First, run the development server:
+**Стек:** Next.js 15, React 19, TypeScript, Tailwind CSS 4, Three.js / React Three Fiber, React Hook Form, Swiper.
+
+## Требования
+
+- Node.js 22.x, npm 10.x и Git.
+- Современный браузер с поддержкой WebGL для 3D-просмотра.
+- Свободный порт 3000. Отдельная база данных не нужна: каталог хранится в `src/data/products.json`.
+
+## Локальный запуск
 
 ```bash
+git clone https://github.com/frendip/shiesty-co.git
+cd shiesty-co
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000). Каталог API обслуживается этим же приложением по пути `/api/products`; для dev-запуска на порту 3000 ключи и `.env` не требуются.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Если нужен другой порт, создайте `.env.local`, например:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```dotenv
+NEXT_PUBLIC_API_URL=http://localhost:3001
+```
 
-## Learn More
+Затем запустите `npm run dev -- --port 3001`. Адрес должен соответствовать серверу с каталогом API; перезапустите приложение после изменения переменной.
 
-To learn more about Next.js, take a look at the following resources:
+Форма заказа открывает ссылку на менеджера бренда. Для использования проекта с другим магазином измените получателя в `src/components/Purchase.tsx`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Сборка
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+**Условие сборки:** главная страница запрашивает каталог ещё на этапе предварительного рендеринга. По адресу `NEXT_PUBLIC_API_URL` должен быть уже доступен совместимый API `/api/products`; по умолчанию используется `http://localhost:3000`. Без работающего API сборка завершается с `fetch failed`. Обычного `npm ci` для автономной production-сборки текущей версии недостаточно.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+После успешной сборки:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm start
+```
+
+В проекте также есть Dockerfile для standalone-сборки; ему тоже требуется доступный API на этапе сборки.
+
+Установка и локальный dev-запуск проверены на Node.js 22.22.3 и npm 10.9.8. Ограничение сборки без API воспроизведено отдельно.
